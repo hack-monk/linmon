@@ -38,6 +38,20 @@ else
     echo -e "${YELLOW}⚠${NC} User $LINMON_USER already exists"
 fi
 
+# Add linmon user to systemd-journal group for journald access
+if getent group systemd-journal >/dev/null 2>&1; then
+    echo "Adding $LINMON_USER to systemd-journal group..."
+    usermod -aG systemd-journal "$LINMON_USER" || true
+    echo -e "${GREEN}✓${NC} Added to systemd-journal group"
+else
+    echo -e "${YELLOW}⚠${NC} systemd-journal group not found (non-systemd system?)"
+    # Fallback: add to adm group for log file access
+    if getent group adm >/dev/null 2>&1; then
+        usermod -aG adm "$LINMON_USER" || true
+        echo -e "${GREEN}✓${NC} Added to adm group (log file access)"
+    fi
+fi
+
 # Create directories
 echo "Creating directories..."
 mkdir -p "$CONFIG_DIR"
