@@ -1,0 +1,77 @@
+# linmon Sample Configuration
+# Copy this to /etc/linmon/config.yaml for production use
+
+state_file: /var/lib/linmon/state.json
+report_dir: /var/lib/linmon/reports
+
+alerts:
+  stdout: true
+  file: /var/log/linmon/alerts.log
+
+monitors:
+  cpu:
+    enabled: true
+    sample_seconds: 2.0
+    rules:
+      - name: high_cpu
+        metric: cpu_percent
+        op: gt
+        value: 80.0
+        consecutive: 2
+      - name: very_high_cpu
+        metric: cpu_percent
+        op: gt
+        value: 95.0
+        consecutive: 1
+      - name: high_load
+        metric: load1
+        op: gt
+        value: 10.0
+        consecutive: 3
+
+  storage:
+    enabled: true
+    mountpoints:
+      - path: /
+        rules:
+          - name: low_disk_space
+            metric: bytes_used_percent
+            op: gt
+            value: 90.0
+            consecutive: 1
+          - name: critical_disk_space
+            metric: bytes_used_percent
+            op: gt
+            value: 95.0
+            consecutive: 1
+          - name: low_inodes
+            metric: inodes_used_percent
+            op: gt
+            value: 90.0
+            consecutive: 1
+      - path: /var
+        rules:
+          - name: var_low_disk
+            metric: mount_var_bytes_used_percent
+            op: gt
+            value: 85.0
+            consecutive: 1
+
+  iostuck:
+    enabled: true
+    rules:
+      - name: hung_tasks_detected
+        metric: hung_task_count
+        op: gt
+        value: 0
+        consecutive: 1
+      - name: high_psi_io
+        metric: psi_io_avg10
+        op: gt
+        value: 50.0
+        consecutive: 2
+      - name: many_d_state_tasks
+        metric: d_state_task_count
+        op: gt
+        value: 10
+        consecutive: 2

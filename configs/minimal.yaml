@@ -1,0 +1,39 @@
+# linmon Minimal Configuration
+
+state_file: /var/lib/linmon/state.json
+report_dir: /var/lib/linmon/reports
+
+alerts:
+  stdout: true
+  file: /var/log/linmon/alerts.log
+
+monitors:
+  cpu:
+    enabled: true
+    sample_seconds: 2.0
+    rules:
+      - name: high_cpu
+        metric: cpu_percent
+        op: gt
+        value: 90.0
+        consecutive: 2
+
+  storage:
+    enabled: true
+    mountpoints:
+      - path: /
+        rules:
+          - name: low_disk_space
+            metric: bytes_used_percent
+            op: gt
+            value: 95.0
+            consecutive: 1
+
+  iostuck:
+    enabled: true
+    rules:
+      - name: hung_tasks
+        metric: hung_task_count
+        op: gt
+        value: 0
+        consecutive: 1

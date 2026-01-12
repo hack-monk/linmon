@@ -1,0 +1,13 @@
+[Unit]
+Description=linmon Monitoring Timer
+Documentation=https://github.com/linmon/linmon
+Requires=linmon.service
+
+[Timer]
+OnCalendar=*:0/5
+# Run every 5 minutes
+AccuracySec=1s
+RandomizedDelaySec=0
+
+[Install]
+WantedBy=timers.target

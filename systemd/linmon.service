@@ -1,0 +1,32 @@
+[Unit]
+Description=linmon - Lightweight Linux Monitoring Tool
+Documentation=https://github.com/linmon/linmon
+After=network.target
+
+[Service]
+Type=oneshot
+User=linmon
+Group=linmon
+ExecStart=/usr/local/bin/linmon check --config /etc/linmon/config.yaml
+StandardOutput=journal
+StandardError=journal
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/linmon /var/log/linmon
+ReadOnlyPaths=/proc /sys /etc/linmon
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

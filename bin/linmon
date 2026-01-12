@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+"""linmon CLI entrypoint script."""
+
+from linmon.cli import main
+
+if __name__ == "__main__":
+    main()

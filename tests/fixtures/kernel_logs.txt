@@ -1,0 +1,4 @@
+2024-01-01T10:00:00Z kernel: INFO: task test:1234 blocked for more than 120 seconds.
+2024-01-01T10:01:00Z kernel: INFO: task test:5678 blocked for more than 60 seconds.
+2024-01-01T10:02:00Z kernel: INFO: task test:9012 blocked for more than 30 seconds.
+2024-01-01T10:03:00Z kernel: INFO: Normal log message without hung task.
