@@ -1,8 +1,5 @@
 # linmon
 
-[![CI](https://github.com/yourusername/linmon/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/linmon/actions/workflows/ci.yml)
-<!-- Update the badge URL above with your actual GitHub username/org -->
-
 A lightweight, one-shot Linux monitoring tool designed for systemd timer-based scheduling. Monitors CPU usage, storage/inode usage, and detects IO-stuck/hung-task conditions.
 
 ## Features
