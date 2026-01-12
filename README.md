@@ -144,7 +144,7 @@ sudo systemctl stop linmon.timer
 
 ```json
 {
-  "timestamp": "2024-01-15T10:30:00.123456Z",
+  "timestamp": "2026-01-05T10:30:00.123456Z",
   "overall": {
     "triage_score": {
       "severity": "high",
@@ -278,7 +278,7 @@ sudo systemctl stop linmon.timer
 When anomalies are detected, alerts are written to the configured file (e.g., `/var/log/linmon/alerts.log`):
 
 ```
-[2024-01-15T10:30:00.123456Z] LINMON ALERT
+[2026-01-05T10:30:00.123456Z] LINMON ALERT
 Anomaly Count: 2
 Severity: HIGH
 
